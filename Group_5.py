@@ -130,19 +130,18 @@ Choices = st.sidebar.selectbox(
 )
 
 # Main application logic
+# Main application logic
 if Choices == 'Scrape the data using BeautifulSoup':
     if category == 'Rental Apartment':
-        with st.spinner('Scraping Rental Apartment data, please wait...'):
-            data = load_apartment_data('https://www.expat-dakar.com/appartements-a-louer?page={page}', Pages)
-            load(data, 'Rental Apartment', '1', '101')
+        data = load_apartment_data('https://www.expat-dakar.com/appartements-a-louer?page={page}', Pages)
+        load(data, 'Rental Apartment', '1', '101')
     elif category == 'Furnished Apartments':
-        with st.spinner('Scraping Furnished Apartments data, please wait...'):
-            data = load_apartment_data('https://www.expat-dakar.com/appartements-meubles?page={page}', Pages)
-            load(data, 'Furnished Apartments', '2', '102')
+        data = load_apartment_data('https://www.expat-dakar.com/appartements-meubles?page={page}', Pages)
+        st.spinner(f"Scraping {category} data, please wait...")
+        load(data, 'Furnished Apartments', '2', '102')
     else:  # Land For Sale
-        with st.spinner('Scraping Land For Sale data, please wait...'):
-            data = load_apartment_data('https://www.expat-dakar.com/terrains-a-vendre?page={page}', Pages)
-            load(data, 'Land For Sale', '3', '103')
+        data = load_apartment_data('https://www.expat-dakar.com/terrains-a-vendre?page={page}', Pages)
+        load(data, 'Land For Sale', '3', '103')
 
 elif Choices == 'Download the scraped data':
     if category == 'Rental Apartment':
